@@ -3,8 +3,10 @@ import 'package:movies_app/view/app_theme.dart';
 import 'package:movies_app/view/constants.dart';
 import 'package:movies_app/view/features/base.dart';
 import 'package:movies_app/view/features/details/views/movie_details.dart';
+import 'package:movies_app/view_model/database/network/dio_helper.dart';
 
 void main() {
+  DioHelper.init();
   runApp(const MyApp());
 }
 

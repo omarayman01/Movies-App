@@ -30,10 +30,12 @@ environment:
 dependencies:
   bloc: ^8.1.4
   cupertino_icons: ^1.0.6
+  dartz: ^0.10.1
   dio: ^5.4.3+1
   equatable: ^2.0.5
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.5
   flutter_native_splash: ^2.4.0
   font_awesome_flutter: ^10.7.0
 
