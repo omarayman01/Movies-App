@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/model/movie_model/movie_model.dart';
+import 'package:movies_app/view/constants.dart';
 
 class PosterItem extends StatelessWidget {
   const PosterItem({
     super.key,
+    required this.movie,
   });
-
+  final MovieModel movie;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -17,9 +20,9 @@ class PosterItem extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(0),
-                  image: const DecorationImage(
+                  image: DecorationImage(
                       fit: BoxFit.fill,
-                      image: AssetImage('assets/pics/Image2.png'))),
+                      image: NetworkImage('$imgUrl${movie.backdropPath}'))),
             ),
             const Center(
                 child:

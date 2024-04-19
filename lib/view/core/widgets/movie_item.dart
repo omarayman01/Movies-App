@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/model/movie_model/movie_model.dart';
 import 'package:movies_app/view/app_theme.dart';
 import 'package:movies_app/view/constants.dart';
+import 'package:movies_app/view_model/database/firebase/firebase_utils.dart';
+import 'package:movies_app/view_model/providers/movies_provider.dart';
+import 'package:provider/provider.dart';
 
 class MovieItem extends StatefulWidget {
   const MovieItem({
     super.key,
+    required this.movie,
   });
-
+  final MovieModel movie;
   @override
   State<MovieItem> createState() => _MovieItemState();
 }
@@ -31,19 +36,24 @@ class _MovieItemState extends State<MovieItem> {
           children: [
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, Routes.detailsRoute);
+                Navigator.pushNamed(context, Routes.detailsRoute,
+                    arguments: widget.movie);
               },
               child: Container(
                 decoration: BoxDecoration(
                     color: AppTheme.bckGround,
                     borderRadius: BorderRadius.circular(0),
-                    image: const DecorationImage(
+                    image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: AssetImage('assets/pics/Image.png'))),
+                        image: NetworkImage(
+                            '$imgUrl${widget.movie.backdropPath}'))),
               ),
             ),
             InkWell(
                 onTap: () {
+                  if (!isSaved) {
+                    addTask();
+                  }
                   isSaved = !isSaved;
                   setState(() {});
                 },
@@ -52,5 +62,16 @@ class _MovieItemState extends State<MovieItem> {
         ),
       ),
     );
+  }
+
+  void addTask() {
+    FireBaseUtils.addmovieToFireStore(widget.movie).timeout(
+      const Duration(milliseconds: 5),
+      onTimeout: () {
+        Provider.of<MoviesProvider>(context, listen: false).getTasks();
+      },
+    ).catchError((error) {
+      print(error.toString());
+    });
   }
 }

@@ -5,4 +5,5 @@ import 'package:movies_app/view_model/errors/failures.dart';
 abstract class HomeRepo {
   Future<Either<Faliure, List<MovieModel>>> fetchRecomendedMovies();
   Future<Either<Faliure, List<MovieModel>>> fetchNewReleasesMovies();
+  Future<Either<Faliure, List<MovieModel>>> fetchPopularMovies();
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 
 import 'belongs_to_collection.dart';
@@ -14,6 +16,8 @@ class MovieModel extends Equatable {
   final List<Genre>? genres;
   final String? homepage;
   final int? id;
+  String? idd;
+
   final String? imdbId;
   final List<String>? originCountry;
   final String? originalLanguage;
@@ -34,7 +38,7 @@ class MovieModel extends Equatable {
   final double? voteAverage;
   final int? voteCount;
 
-  const MovieModel({
+  MovieModel({
     this.adult,
     this.backdropPath,
     this.belongsToCollection,
@@ -42,6 +46,7 @@ class MovieModel extends Equatable {
     this.genres,
     this.homepage,
     this.id,
+    this.idd = '',
     this.imdbId,
     this.originCountry,
     this.originalLanguage,
@@ -64,6 +69,7 @@ class MovieModel extends Equatable {
   });
 
   factory MovieModel.fromJson(Map<String, dynamic> json) => MovieModel(
+        idd: json['idd'] as String?,
         adult: json['adult'] as bool?,
         backdropPath: json['backdrop_path'] as String?,
         belongsToCollection: json['belongs_to_collection'] == null
@@ -111,6 +117,7 @@ class MovieModel extends Equatable {
         'genres': genres?.map((e) => e.toJson()).toList(),
         'homepage': homepage,
         'id': id,
+        'idd': idd,
         'imdb_id': imdbId,
         'origin_country': originCountry,
         'original_language': originalLanguage,
@@ -144,6 +151,7 @@ class MovieModel extends Equatable {
       genres,
       homepage,
       id,
+      idd,
       imdbId,
       originCountry,
       originalLanguage,

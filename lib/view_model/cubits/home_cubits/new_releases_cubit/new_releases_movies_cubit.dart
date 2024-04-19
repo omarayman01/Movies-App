@@ -1,8 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/model/movie_model/movie_model.dart';
-import 'package:movies_app/view_model/repos/home_repo.dart';
-import 'package:movies_app/view_model/repos/home_repo_impl.dart';
+import 'package:movies_app/view_model/repos/home/home_repo.dart';
 
 part 'new_releases_movies_state.dart';
 

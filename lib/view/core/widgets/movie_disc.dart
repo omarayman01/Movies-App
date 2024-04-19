@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/model/movie_model/movie_model.dart';
 
 class MovieDisc extends StatelessWidget {
-  const MovieDisc({super.key});
-
+  const MovieDisc({super.key, required this.movie});
+  final MovieModel movie;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,7 +20,7 @@ class MovieDisc extends StatelessWidget {
               const SizedBox(
                 width: 5,
               ),
-              Text('7.7',
+              Text('${movie.voteAverage}',
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium!
@@ -29,17 +30,17 @@ class MovieDisc extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 19),
-          child: Text('Deadpool 2',
+          child: Text('${movie.originalTitle}',
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium!
-                  .copyWith(fontSize: 10)),
+                  .copyWith(fontSize: 8)),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 19),
-          child: Text('2018  R  1h 59m',
+          child: Text('${movie.releaseDate}',
               style:
-                  Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 8)),
+                  Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 6)),
         ),
       ],
     );

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/view/core/widgets/movie_item.dart';
-import 'package:movies_app/view/core/widgets/movie_item_rating.dart';
-import 'package:movies_app/view/features/home/widgets/movies_listView.dart';
+import 'package:movies_app/view/features/home/widgets/newreleases_listview.dart';
 import 'package:movies_app/view/features/home/widgets/poster_film.dart';
+import 'package:movies_app/view/features/home/widgets/recomended_listview.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -16,17 +20,16 @@ class HomeScreen extends StatelessWidget {
         PosterFilm(),
         SizedBox(height: 20),
         SizedBox(
-            height: 155,
-            child: MoviesListView(
-              text: 'New Releases',
-              widget: MovieItem(),
-            )),
+          height: 155,
+          child: NewReleasesListView(
+            text: "New Releases",
+          ),
+        ),
         SizedBox(height: 20),
         SizedBox(
             height: 180,
-            child: MoviesListView(
+            child: RecomendedListView(
               text: 'Recomended',
-              widget: MovieItemRating(),
             )),
       ],
     ));

@@ -9,6 +9,8 @@ class DioHelper {
     dio = Dio(
       BaseOptions(baseUrl: EndPoints.baseUrl, headers: {
         'Accept': 'application/json',
+        // 'Authorization': 'Bearer ${EndPoints.accessToken}',
+        // 'API-Key': EndPoints.apiKey
       }),
     );
   }
@@ -20,19 +22,25 @@ class DioHelper {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      dio.options.headers = {};
+      dio.options.headers['Authorization'] = 'Bearer ${EndPoints.accessToken}';
+      // dio.options.headers = {};
       final Response response = await dio.get(
         endPoint,
         queryParameters: queryParameters,
         onReceiveProgress: onReceiveProgress,
       );
-      debugPrint(
-          'Get DONEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-      debugPrint(response.data.toString());
+      // debugPrint(
+      //     'Get DONEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      // // debugPrint(response.toString());
+      // debugPrint(
+      //     'Finishhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
       return response;
     } catch (e) {
-      debugPrint(
-          'get ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      // debugPrint(
+      //     'get ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      debugPrint(e.toString());
+      // debugPrint(
+      //     'Finishhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
 
       rethrow;
     }
